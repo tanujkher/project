@@ -1,0 +1,29 @@
+.navbar{
+    display: flex;
+    background-color: brown;
+    height: 30px;
+    width: 800px;
+}
+.navbar a, .navbar button{
+    display: inline;
+    outline: none;
+    background-color: burlywood;
+    border: none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20pt;
+    padding: 2px;
+    transition: 2s;
+}
+.navbar a:hover, .navbar button:hover{
+    background-color: cadetblue;
+    transition: 2s;
+}
+.dropdown .drop-content{
+    display: none;
+}
+.dropdown:hover .drop-content{
+    display: block;
+}
+.drop-content a{
+    display: block;
+}
