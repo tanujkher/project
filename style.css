@@ -6,16 +6,47 @@
     padding: 10px;
 }
 .color1{
+    margin: 0px;
     background-color: #0873A3;
-    height: 400px;
     color: cornsilk;
+    height: 400px;
 }
 .color21{
     background-color: #F15461;
     color: cornsilk;
 }
 .color2{
+    margin: 0px;
     background-color: #F15461;
     height: 400px;
     color: cornsilk;
+}
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px 8px;
+    border-radius: 50%;
+}
+.fa:hover {
+    opacity: 0.7;
+} 
+.fa-facebook {
+    background-color: #3B5998;
+    color: white;
+}
+.fa-twitter {
+    background-color: #55ACEE;
+    color: white;
+}
+.fa-google{
+    background-color: #dd4b39;
+    color: white;
+}
+.back{
+    margin: 0px;
+    background-color: #252525;
+    color: white;
 }
