@@ -3,9 +3,13 @@ const srv = express()
 
 const dbOps = require('./dbms')
 
+srv.set('view engine', 'hbs')
+
 srv.use('/', express.static(__dirname + '/public'))
 
-srv.use('/signup', express.static(__dirname + '/signup'))
+srv.get('/signup', (req, res) => {
+    res.render('signup')
+})
 
 srv.get('/insert', (req, res) => {
     dbOps.createTable()
@@ -16,7 +20,7 @@ srv.get('/insert', (req, res) => {
             res.redirect('/')
         })
         .catch((err) => {
-            console.error(err)
+            res.render('signup', {error: ['Check Your Details. Columns marked with * are Compulsory.']})
         })
     })
     .catch((err) => {
@@ -27,7 +31,7 @@ srv.get('/insert', (req, res) => {
             res.redirect('/')
         })
         .catch((err) => {
-            console.error(err)
+            res.render('signup', {error: ['Check Your Details. Columns marked with * are Compulsory.']})
         })
         }
     })

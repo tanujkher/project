@@ -11,12 +11,12 @@ function createTable(){
     return new Promise((reject, resolve) => {
         connection.query(
             `CREATE TABLE IF NOT EXISTS ldetails (
-                email VARCHAR(100), 
-                password VARCHAR(30), 
-                address VARCHAR(200),
-                city VARCHAR(30),
-                state VARCHAR(30),
-                zip INTEGER)`,
+                email VARCHAR(100) PRIMARY KEY, 
+                password VARCHAR(30) NOT NULL, 
+                address VARCHAR(200) NOT NULL,
+                city VARCHAR(30) NOT NULL,
+                state VARCHAR(30) NOT NULL,
+                zip INTEGER NOT NULL)`,
                 (err, result) => {
                     if(err){
                         reject(err)
@@ -29,6 +29,9 @@ function createTable(){
 
 function signup(email, password, address, city, state, zip){
     return new Promise((resolve, reject) => {
+        if(email == '' || password == '' || city == '' || state == '' || zip == ''){
+            reject(err)
+        }
         connection.query(
             'INSERT INTO ldetails VALUES (?, ?, ?, ?, ?, ?)',
             [email, password, address, city, state, zip],
