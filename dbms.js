@@ -45,6 +45,22 @@ function signup(email, password, address, city, state, zip){
     })
 }
 
+function checkUser(email, password){
+    return new Promise((resolve, reject) => {
+        connection.query(
+            `SELECT password FROM ldetails WHERE email = ?`,
+            [email],
+            (err, result) => {
+                if(result[0].password == password){
+                    resolve()
+                }else{
+                    reject(err)
+                }
+            }
+        )
+    })
+}
+
 exports = module.exports = {
-    signup, createTable
+    signup, createTable, checkUser
 }

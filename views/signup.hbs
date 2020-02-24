@@ -18,6 +18,13 @@
           </div>
         </div>
         {{/each}}
+        {{#each success as |msg|}}
+        <div class="form-row">
+          <div class="alert alert-success" role="alert">
+            {{msg}} <a href="/signin">Sign-In</a>.
+          </div>
+        </div>
+        {{/each}}
         <div class="form-row">
           <div class="form-group col-md-6">
             <label for="inputEmail4">Email</label>
