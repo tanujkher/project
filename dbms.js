@@ -33,6 +33,35 @@ const User = db.define('Users', {
     }
 })
 
+const Donor = db.define('Donors', {
+    email: {
+        type: sequelize.STRING,
+        primaryKey: true
+    },
+    name: {
+        type: sequelize.STRING
+    },
+    donorId: {
+        type: sequelize.INTEGER
+    },
+    medicalHistory: {
+        type: sequelize.STRING
+    },
+    bloodgroup: {
+        type: sequelize.STRING
+    },
+    lastDonation: {
+        type: sequelize.DATE
+    },
+    gender: {
+        type: sequelize.STRING
+    }
+})
+
+Donor.belongsTo(User, {foreignKey: 'email'})
+// insert into Donors (email, name, createdAt, updatedAt) values ("abc@gmail.com", "abc", "01/01/20", "02/01/20");
+// this statement will not work if abc@gmail.com doesn't exist in Users table as the two tables have a 1 : 1 relation
+
 db.sync()
 .then(() => {
     console.log('Database has been synced')
@@ -42,5 +71,5 @@ db.sync()
 })
 
 exports = module.exports = {
-    User
+    User, Donor
 }

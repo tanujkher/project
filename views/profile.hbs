@@ -1,13 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Hi {{user.email}}</h1>
-    <h2>You are from{{user.address}}</h2>
+  <div class="alert alert-secondary" role="alert">
+    <div class="row">
+      <img src="bdsymbol.png" class="col-2">
+      <div class="col-9">
+        <h1 style="font-size: 28pt;"><b>Want to Know about Coronavirus and Blood Donation</b></h1>
+        <div style="font-size: 14pt;">Donating blood is a safe process and people should not hesitate to give or receive blood. <span class="alert-link" style="color: #007bff;">Right now, eligible and healthy donors are strongly urged to make an appointment to give soon.</span> But please postpone your donation for 28 days following travel to China and its special administrative regions, Hong Kong and Macau, as well as Iran, Italy and South Korea, or if you’ve been diagnosed with or have had contact with anyone with a suspected or confirmed case of COVID-19. <span class="alert-link" style="color: #007bff;">Learn more about blood donation.</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="card text-center">
+    <div class="card-header">
+      <h3><b>Details</b></h3>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{user.email}}</h5>
+      <p class="card-text">Organizing blood donation camps is one of our core activities. All our camps focus on giving blood donor the best experience.</p>
+      <div class="row">
+        <div class="col-2"></div>
+        <a href="#" class="btn btn-primary col-2">Donate</a>
+        <div class="col-4"></div>
+        <a href="#" class="btn btn-danger col-2">Emergency</a>
+        <div class="col-2"></div>
+      </div>
+    </div>
+    <div class="card-footer text-muted">
+      <div style="margin-bottom: 10px;">Profile Strength</div>
+      <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="{{completion}}" aria-valuemin="0" aria-valuemax="100" style="width: {{completion}}%"></div>
+      </div>
+      <div style="margin-top: 10px;"><a href="/details">Complete Profile</a></div>
+    </div>
+  </div>
+  <div>
+    <div class="row row-cols-1 row-cols-md-4">
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="card1.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">We'd love to hear from you. Use the form in the link below to contact us.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="card2.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Sign in or learn more about how you can host a blood drive in your area.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="card3.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Complete your pre-reading and donation questions online with RapidPass.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-4">
+        <div class="card h-100">
+          <img src="card4.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Learn more about how you can host a blood drive in your area.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-6"></div>
+      <div class="col mb-5">
+        <div class="card h-100">
+          <img src="card5.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Discover blood facts and statistics, and what happens to donated blood.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-6">
+        <div class="card h-10">
+          <img src="card6.jpeg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <p class="card-text">Learn more about Red Cross hospital products and services.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col mb-6"></div>
+    </div>
+  </div>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <form style="padding: 30pt;" method="POST" action="/api/donors">
+    <div class="form-group">
+      <label for="inputEmail4">Full Name</label>
+      <input type="text" class="form-control" id="inputEmail4" name="name">
+    </div>
+    <div class="form-group">
+      <label for="inputPassword4">Donor ID</label>
+      <input type="text" class="form-control" id="inputPassword4" name="donorId">
+    </div>
+    <div class="form-group">
+      <label for="inputAddress">Medical History</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="Blood Donation isn't advised in case of medical problems like anaemia" name="medicalHistory">
+    </div>
+    <div class="form-group">
+      <label for="inputState">Blood Group</label>
+      <select id="inputState" class="form-control" name="bloodgroup">
+        <option selected>O+</option>
+        <option>O-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>A+</option>
+        <option>A-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="inputZip">Last Donation Date</label>
+      <input type="date" class="form-control" id="inputZip" name="lastDonationDate">
+    </div>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gender" id="exampleRadios1" value="Male" checked>
+    <label class="form-check-label" for="exampleRadios1">
+      Male
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" type="radio" name="gender" id="exampleRadios2" value="Female">
+    <label class="form-check-label" for="exampleRadios2">
+      Female
+    </label>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Update Details</button>
+</form>
+</body>
+</html>

@@ -3,6 +3,7 @@ const srv = express()
 const session = require('express-session')
 
 const User = require('./dbms').User
+const Donor = require('./dbms').Donor
 
 srv.use(session({
     secret: 'Along unguessable string',
@@ -31,6 +32,13 @@ srv.get('/changeUser', (req, res) => {
     res.redirect('/profile')
 })
 
+srv.get('/details', (req, res) => {
+    if(!req.session.username){
+        return res.redirect('signin')
+    }
+    res.render('details')
+})
+
 srv.get('/profile', (req, res) => {
     if(!req.session.username){
         res.redirect('signin')
@@ -39,9 +47,25 @@ srv.get('/profile', (req, res) => {
         where: {
             email: req.session.username
         }
-    }).then((user) => {
+    }).then(async (user) => {
+        let donor = await Donor.findAll({
+            where: {
+                email: req.session.username
+            }
+        })
+        let count = 7
+        if(donor[0].dataValues.email == null) count--
+        if(donor[0].dataValues.name == null) count--
+        if(donor[0].dataValues.donorId == null) count--
+        if(donor[0].dataValues.medicalHistory == null) count-- 
+        if(donor[0].dataValues.bloodgroup == null) count--
+        if(donor[0].dataValues.lastDonation == null) count--
+        if(donor[0].dataValues.gender == null) count--
+        console.log(count)
+        console.log((count * 100) / 7) 
         res.render('profile', {
-            user: user[0].dataValues
+            user: user[0].dataValues,
+            completion: (count * 100) / 7
         })
     })
 })
