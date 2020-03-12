@@ -5,12 +5,6 @@ const session = require('express-session')
 route.use(express.urlencoded({extended: true}))
 route.use(express.json())
 
-route.use(session({
-    secret: 'Along unguessable string',
-    resave: 'false',
-    saveUninitialized: 'true'
-}))
-
 const User = require('../../dbms').User
 
 route.get('/signup', (req, res) => {
@@ -56,13 +50,12 @@ route.post('/signin', (req, res) => {
                 error: ['Username doesn\'t exist']
             })
         }
-        console.log(user[0].dataValues)
         if(user[0].dataValues.password != req.body.password){
             return res.status(501).render('signin', {
                 error: ['Incorrect password']
             })
         }
-        res.send('success')
+        res.redirect(`/changeUser?email=${user[0].dataValues.email}`)
     }).catch((err) => {
         return res.status(501).render('signin', {
             error: ['Username doesn\'t exist']
