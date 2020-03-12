@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <form style="padding: 30pt;" method="GET" action="/validate">
+    <form style="padding: 30pt;" method="POST" action="/api/users/signin">
         {{#each error as |err|}}
         <div class="form-group">
           <div class="alert alert-danger" role="alert">

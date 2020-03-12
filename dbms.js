@@ -1,66 +1,46 @@
-const mysql = require('mysql2')
+const sequelize = require('sequelize')
 
-const connection = mysql.createConnection({
+const db = new sequelize('mytestdb', 'myuser', 'mypass', {
     host: 'localhost',
-    user: 'myuser',
-    database: 'mytestdb',
-    password: 'mypass'
+    dialect: 'mysql'
 })
 
-function createTable(){
-    return new Promise((reject, resolve) => {
-        connection.query(
-            `CREATE TABLE IF NOT EXISTS ldetails (
-                email VARCHAR(100) PRIMARY KEY, 
-                password VARCHAR(30) NOT NULL, 
-                address VARCHAR(200) NOT NULL,
-                city VARCHAR(30) NOT NULL,
-                state VARCHAR(30) NOT NULL,
-                zip INTEGER NOT NULL)`,
-                (err, result) => {
-                    if(err){
-                        reject(err)
-                    }
-                    resolve()
-                } 
-        )
-    })
-}
+const User = db.define('Users', {
+    email: {
+        type: sequelize.STRING,
+        primaryKey: true,
+        allowNull: false
+    },
+    password: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    address: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    city: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    state: {
+        type: sequelize.STRING,
+        allowNull: false
+    },
+    zip: {
+        type: sequelize.INTEGER,
+        allowNull: false
+    }
+})
 
-function signup(email, password, address, city, state, zip){
-    return new Promise((resolve, reject) => {
-        if(email == '' || password == '' || city == '' || state == '' || zip == ''){
-            reject(err)
-        }
-        connection.query(
-            'INSERT INTO ldetails VALUES (?, ?, ?, ?, ?, ?)',
-            [email, password, address, city, state, zip],
-            (err, result) => {
-                if(err){
-                    reject(err)
-                }
-                resolve()
-            }
-        )
-    })
-}
-
-function checkUser(email, password){
-    return new Promise((resolve, reject) => {
-        connection.query(
-            `SELECT password FROM ldetails WHERE email = ?`,
-            [email],
-            (err, result) => {
-                if(result[0].password == password){
-                    resolve()
-                }else{
-                    reject(err)
-                }
-            }
-        )
-    })
-}
+db.sync()
+.then(() => {
+    console.log('Database has been synced')
+})
+.catch(() => {
+    console.log('Error creating database')
+})
 
 exports = module.exports = {
-    signup, createTable, checkUser
+    User
 }
