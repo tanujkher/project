@@ -53,22 +53,19 @@ srv.get('/profile', (req, res) => {
                 email: req.session.username
             }
         })
-        console.log(donor)
         let count = 0
         if(donor[0]){
-            if(donor[0].dataValues.email != null) count++
-            if(donor[0].dataValues.name != null) count++
-            if(donor[0].dataValues.donorId != null) count++
-            if(donor[0].dataValues.medicalHistory != null) count++ 
-            if(donor[0].dataValues.bloodgroup != null) count++
+            if(donor[0].dataValues.name) count++
+            if(donor[0].dataValues.donorId) count++
+            if(donor[0].dataValues.medicalHistory) count++ 
+            if(donor[0].dataValues.bloodgroup) count++
             if(donor[0].dataValues.lastDonation != null) count++
             if(donor[0].dataValues.gender != null) count++
             console.log(count)
         }
-        console.log((count * 100) / 7) 
         res.render('profile', {
             user: user[0].dataValues,
-            completion: (count * 100) / 7
+            completion: (count * 100) / 5
         })
     })
 })

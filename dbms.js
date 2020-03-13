@@ -42,7 +42,7 @@ const Donor = db.define('Donors', {
         type: sequelize.STRING
     },
     donorId: {
-        type: sequelize.INTEGER
+        type: sequelize.STRING
     },
     medicalHistory: {
         type: sequelize.STRING
