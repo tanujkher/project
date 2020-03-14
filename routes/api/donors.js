@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router()
-const Donor = require('../../dbms').Donor
+const Donor = require('../../data/dbms').Donor
 
 route.use(express.urlencoded({extended: true}))
 route.use(express.json())
@@ -17,7 +17,8 @@ route.post('/', async (req, res) => {
         if(req.body.donorId) newDonor.donorId = req.body.donorId
         if(req.body.medicalHistory) newDonor.medicalHistory = req.body.medicalHistory
         if(req.body.bloodgroup) newDonor.bloodgroup = req.body.bloodgroup
-        if(req.body.lastDonation != null) newDonor.lastDonation = req.body.lastDonation
+        console.log(req.body.lastDonation)
+        if(req.body.lastDonation) newDonor.lastDonation = req.body.lastDonation
         if(req.body.gender != null) newDonor.gender = req.body.gender
         console.log('updating ' + JSON.stringify(donor) + ' to')
         console.log(newDonor)
@@ -33,7 +34,7 @@ route.post('/', async (req, res) => {
             lastDonation: req.body.lastDonation,
             gender: req.body.gender
         })
-        return res.status(201).send('/profile')
+        return res.status(201).redirect('/profile')
     }
 })
 

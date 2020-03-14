@@ -2,10 +2,16 @@ const express = require('express')
 const route = express.Router()
 const session = require('express-session')
 
+route.use(session({
+    secret: 'Along unguessable string',
+    resave: 'false',
+    saveUninitialized: 'true'
+}))
+
 route.use(express.urlencoded({extended: true}))
 route.use(express.json())
 
-const User = require('../../dbms').User
+const User = require('../../data/dbms').User
 
 route.get('/signup', (req, res) => {
     User.findAll()
@@ -55,7 +61,8 @@ route.post('/signin', (req, res) => {
                 error: ['Incorrect password']
             })
         }
-        res.redirect(`/changeUser?email=${user[0].dataValues.email}`)
+        req.session.username = req.body.email
+        res.redirect('/profile')
     }).catch((err) => {
         return res.status(501).render('signin', {
             error: ['Username doesn\'t exist']

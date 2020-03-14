@@ -2,8 +2,7 @@ const express = require('express')
 const srv = express()
 const session = require('express-session')
 
-const User = require('./dbms').User
-const Donor = require('./dbms').Donor
+const { db, User, Donor } = require('./data/dbms')
 
 srv.use(session({
     secret: 'Along unguessable string',
@@ -25,13 +24,6 @@ srv.get('/signin', (req, res) => {
 
 srv.use('/api', require('./routes/api'))
 
-srv.get('/changeUser', (req, res) => {
-    console.log(JSON.stringify(req.query))
-    req.session.username = req.query.email 
-    req.session.save()
-    res.redirect('/profile')
-})
-
 srv.get('/details', (req, res) => {
     if(!req.session.username){
         return res.redirect('signin')
@@ -41,7 +33,7 @@ srv.get('/details', (req, res) => {
 
 srv.get('/profile', (req, res) => {
     if(!req.session.username){
-        res.redirect('signin')
+        return res.redirect('signin')
     }
     User.findAll({
         where: {
@@ -59,17 +51,23 @@ srv.get('/profile', (req, res) => {
             if(donor[0].dataValues.donorId) count++
             if(donor[0].dataValues.medicalHistory) count++ 
             if(donor[0].dataValues.bloodgroup) count++
-            if(donor[0].dataValues.lastDonation != null) count++
-            if(donor[0].dataValues.gender != null) count++
-            console.log(count)
+            if(donor[0].dataValues.lastDonation != 'Invalid Date' && donor[0].dataValues.lastDonation != null) count++
+            if(donor[0].dataValues.gender && donor[0].dataValues.gender != null) count++
         }
         res.render('profile', {
             user: user[0].dataValues,
-            completion: (count * 100) / 5
+            completion: (count * 100) / 6
         })
     })
 })
 
-srv.listen('7722', () => {
-    console.log('Server started at http://localhost:7722')
+db.sync()
+.then(() => {
+    console.log('Database has been synced')
+    srv.listen('7722', () => {
+        console.log('Server started at http://localhost:7722')
+    })
+})
+.catch(() => {
+    console.log('Error creating database')
 })
