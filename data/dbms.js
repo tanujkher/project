@@ -35,10 +35,6 @@ const User = db.define('Users', {
 })
 
 const Donor = db.define('Donors', {
-    email: {
-        type: sequelize.STRING,
-        primaryKey: true
-    },
     name: {
         type: sequelize.STRING
     },
@@ -56,6 +52,9 @@ const Donor = db.define('Donors', {
     },
     gender: {
         type: sequelize.STRING
+    },
+    enlist: {
+        type: sequelize.BOOLEAN
     }
 })
 

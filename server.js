@@ -46,6 +46,7 @@ srv.get('/profile', (req, res) => {
             }
         })
         let count = 0
+        let verified = false
         if(donor[0]){
             if(donor[0].dataValues.name) count++
             if(donor[0].dataValues.donorId) count++
@@ -53,9 +54,11 @@ srv.get('/profile', (req, res) => {
             if(donor[0].dataValues.bloodgroup) count++
             if(donor[0].dataValues.lastDonation != 'Invalid Date' && donor[0].dataValues.lastDonation != null) count++
             if(donor[0].dataValues.gender && donor[0].dataValues.gender != null) count++
+            if(donor[0].dataValues.enlist) verified = true
         }
         res.render('profile', {
             user: user[0].dataValues,
+            verified: verified,
             completion: (count * 100) / 6
         })
     })

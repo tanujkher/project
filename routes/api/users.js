@@ -45,29 +45,25 @@ route.post('/signup', (req, res) => {
     })
 })
 
-route.post('/signin', (req, res) => {
-    User.findAll({
+route.post('/signin', async (req, res) => {
+    const user = await User.findOne({
         where: {
             email: req.body.email
         }
-    }).then((user) => {
-        if(user.length == 0){
-            return res.status(501).render('signin', {
-                error: ['Username doesn\'t exist']
-            })
+    })
+    if(user){
+        if(user.password == req.body.password){
+            req.session.username = req.body.email
+            return res.redirect('/profile')
         }
-        if(user[0].dataValues.password != req.body.password){
-            return res.status(501).render('signin', {
-                error: ['Incorrect password']
-            })
-        }
-        req.session.username = req.body.email
-        res.redirect('/profile')
-    }).catch((err) => {
-        return res.status(501).render('signin', {
+        return res.render('signin', {
+            error: ['Incorrect password']
+        })
+    }else{
+        return res.render('signin', {
             error: ['Username doesn\'t exist']
         })
-    })
+    }
 })
 
 exports = module.exports = route
