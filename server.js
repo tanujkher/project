@@ -26,14 +26,14 @@ srv.use('/api', require('./routes/api'))
 
 srv.get('/details', (req, res) => {
     if(!req.session.username){
-        return res.redirect('signin')
+        return res.redirect('/signin')
     }
     res.render('details')
 })
 
 srv.get('/profile', (req, res) => {
     if(!req.session.username){
-        return res.redirect('signin')
+        return res.redirect('/signin')
     }
     User.findAll({
         where: {

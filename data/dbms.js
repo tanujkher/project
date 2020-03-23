@@ -58,10 +58,20 @@ const Donor = db.define('Donors', {
     }
 })
 
+const Request = db.define('Requests', {
+    // name of the one who gets the request
+    name: {
+        type: sequelize.STRING
+    },
+    email: {
+        type: sequelize.STRING
+    }
+})
+
 Donor.belongsTo(User, {foreignKey: 'email'})
 // insert into Donors (email, name, createdAt, updatedAt) values ("abc@gmail.com", "abc", "01/01/20", "02/01/20");
 // this statement will not work if abc@gmail.com doesn't exist in Users table as the two tables have a 1 : 1 relation
 
 exports = module.exports = {
-    db, User, Donor
+    db, User, Donor, Request
 }

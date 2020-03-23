@@ -9,6 +9,20 @@
 </head>
 <body>
 <div class="row m-5">
+  {{#each error as |err|}}
+    <div class="form-group col-12">
+      <div class="alert alert-danger" role="alert">
+        {{err}}
+      </div>
+    </div>
+  {{/each}}
+  {{#each success as |msg|}}
+    <div class="form-group col-12">
+      <div class="alert alert-success" role="alert">
+        {{msg}}
+      </div>
+    </div>
+  {{/each}}
   {{#each Donors as |Donor|}}
   <div class="card border-success mb-3 col-3 m-5" style="max-width: 18rem;">
     <div class="card-header bg-transparent border-success row"><div class="col-3"></div><h2 class="text-success card-title col-6">{{Donor.name}}</h2><div class="col-3"></div></div>
@@ -32,7 +46,9 @@
     </div>
     <div class="card-footer bg-transparent border-success row">
       <div class="col"></div>
-      <button method="POST" action="/api/addRequest" class="btn btn-success col-8">Exchange Info</button>
+      <form method="POST" action="/api/addRequest" class="col-8">
+      <button class="btn btn-success" value="{{Donor.email}}" name="email">Exchange Info</button>
+      </form>
       <div class="col"></div>
     </div>
   </div>
