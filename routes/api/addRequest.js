@@ -44,7 +44,10 @@ route.post('/', async (req, res) => {
                 console.log(req.session.username)
                 const newRequest = await Request.create({
                     name: req.body.email,
-                    email: req.session.username
+                    email: req.session.username,
+                    gender: recipient.gender,
+                    donorId: recipient.donorId,
+                    reqName: recipient.name
                 })
                 return res.render('donationCards', {
                     Donors: Donors,

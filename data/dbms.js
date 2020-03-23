@@ -65,6 +65,15 @@ const Request = db.define('Requests', {
     },
     email: {
         type: sequelize.STRING
+    },
+    donorId: {
+        type: sequelize.STRING
+    },
+    gender: {
+        type: sequelize.STRING
+    },
+    reqName: {
+        type: sequelize.STRING
     }
 })
 

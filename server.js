@@ -2,7 +2,7 @@ const express = require('express')
 const srv = express()
 const session = require('express-session')
 
-const { db, User, Donor } = require('./data/dbms')
+const { db, User, Donor, Request } = require('./data/dbms')
 
 srv.use(session({
     secret: 'Along unguessable string',
@@ -56,10 +56,16 @@ srv.get('/profile', (req, res) => {
             if(donor[0].dataValues.gender && donor[0].dataValues.gender != null) count++
             if(donor[0].dataValues.enlist) verified = true
         }
+        const request = await Request.findAll({
+            where: {
+                name: req.session.username
+            }
+        })
         res.render('profile', {
             user: user[0].dataValues,
             verified: verified,
-            completion: (count * 100) / 6
+            completion: (count * 100) / 6,
+            requests: request
         })
     })
 })
