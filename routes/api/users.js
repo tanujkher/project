@@ -54,6 +54,7 @@ route.post('/signin', async (req, res) => {
     if(user){
         if(user.password == req.body.password){
             req.session.username = req.body.email
+            req.session.save()
             return res.redirect('/profile')
         }
         return res.render('signin', {

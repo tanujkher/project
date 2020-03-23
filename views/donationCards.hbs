@@ -1,11 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-    <h1>Adding Cards</h1>
+<div class="row m-5">
+  {{#each Donors as |Donor|}}
+  <div class="card border-success mb-3 col-3 m-5" style="max-width: 18rem;">
+    <div class="card-header bg-transparent border-success row"><div class="col-3"></div><h2 class="text-success card-title col-6">{{Donor.name}}</h2><div class="col-3"></div></div>
+    <div class="card-body text-success">
+      <h5 class="card-title">BLOODGROUP: {{Donor.bloodgroup}}</h5>
+      <p class="card-text">
+        {{#if Donor.donorId}}
+        ID: {{Donor.donorId}} <br>
+        {{/if}}
+        {{#if Donor.medicalHistory}}
+        MEDICAL HISTORY: {{Donor.medicalHistory}}<br>
+        {{/if}}
+        {{#if Donor.gender}}
+        GENDER: {{Donor.gender}}<br>
+        {{/if}}
+        {{#if Donor.lastDonation}}
+        LAST DONATION DATE: {{Donor.lastDonation}}<br>
+        {{/if}}
+        EMAIL-ID: {{Donor.email}}
+      </p>
+    </div>
+    <div class="card-footer bg-transparent border-success row">
+      <div class="col"></div>
+      <button method="POST" action="/api/addRequest" class="btn btn-success col-8">Exchange Info</button>
+      <div class="col"></div>
+    </div>
+  </div>
+  {{/each}}
+</div>
 </body>
 </html>

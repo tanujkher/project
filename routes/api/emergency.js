@@ -1,5 +1,6 @@
 const express = require('express')
 const route = express.Router()
+const { Op } = require('sequelize')
 
 const Donor = require('../../data/dbms').Donor
 
@@ -14,7 +15,19 @@ route.get('/', async (req, res) => {
     })
     if(recipient){
         if(recipient.bloodgroup){
-            return res.render('donationCards')
+            const Donors = await Donor.findAll({
+                where: {
+                    [Op.and]: {
+                        bloodgroup: recipient.bloodgroup,
+                        [Op.not]: {
+                            email: recipient.email
+                        }
+                    }
+                }
+            })
+            return res.render('donationCards', {
+                Donors: Donors
+            })
         }else{
             return res.render('details', {
                 error: ['Please enter Bloodgroup so that we can enlist donors for you']
