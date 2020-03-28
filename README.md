@@ -41,7 +41,7 @@ node server.js
 ![Signin Page Error](./screenshots/signin-error-pass.png)
 
 ### Profile Page: http://localhost:7722/profile (redirects to Signin if not logged in)
-![Profile Page](./screenshots/signin-profile.png)
+![Profile Page](./screenshots/profile.png)
 
 #### Complete profile and Profile strength
 ![Profile Bar](./screenshots/complete-profile.png)
