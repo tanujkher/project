@@ -2,6 +2,8 @@ const express = require('express')
 const srv = express()
 const session = require('express-session')
 
+const SERVER_PORT = process.env.PORT || 7722
+
 const { db, User, Donor, Request } = require('./data/dbms')
 
 srv.use(session({
@@ -73,8 +75,8 @@ srv.get('/profile', (req, res) => {
 db.sync()
 .then(() => {
     console.log('Database has been synced')
-    srv.listen('7722', () => {
-        console.log('Server started at http://localhost:7722')
+    srv.listen(SERVER_PORT, () => {
+        console.log(`Server started at http://localhost:${SERVER_PORT}`)
     })
 })
 .catch(() => {
