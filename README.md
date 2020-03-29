@@ -9,7 +9,7 @@ A simple project with signup, signin, authentication and express-sessions to kee
 * Express - for setting up server
 * Express-Session - for keeping track of logged in user
 * Hbs - To use handlebars for server side rendering of pages like profile, signup and signin with information from database
-* Sequelize - To facilitate switching from one databse to another, make all functions generic and to add information to database
+* Sequelize - To facilitate switching from one database to another, make all functions generic and to add information to database
 * Sqlite - To store data within the data file and not making database system specific
 
 ## 3. Run the Server
